@@ -1,13 +1,14 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
+import CustomText from '../components/CustomText';
 
 const HomePage = () => {
   const theme = useTheme();
 
   return (
     <View style={{backgroundColor: theme.colors.background}}>
-      <Text style={{fontFamily: theme.fonts.medium}}>Omen Tonrem!</Text>
+      <CustomText text="banane" />
     </View>
   );
 };

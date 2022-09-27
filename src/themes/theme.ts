@@ -70,6 +70,11 @@ const Fonts = {
 const Typhograpyh = {
   HeaderTextSize: 24,
   TextSize: 12,
+  headerIconSize: 24,
 };
 
-export default {CustomLightTheme, CustomDarkTheme, Fonts, Typhograpyh};
+const Style = {
+  activeOpacity: 0.8,
+};
+
+export default {CustomLightTheme, CustomDarkTheme, Fonts, Typhograpyh, Style};

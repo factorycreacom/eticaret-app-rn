@@ -9,6 +9,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import CustomDrawerContent from './customDrawerContent';
 import {useTheme} from '@react-navigation/native';
+import {HeaderRightIcon, HeaderTitle} from '../components/Header';
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -42,16 +43,31 @@ const TabStack = () => {
           return <MaterialIcons name={iconName} size={25} color={color} />;
         },
       })}>
-      <Tab.Screen name="Home" component={HomePage} options={defaultOptions} />
+      <Tab.Screen
+        name="Home"
+        component={HomePage}
+        options={{
+          ...defaultOptions,
+          headerTitle: () => <HeaderTitle title="Deals" />,
+          headerRight: () => <HeaderRightIcon />,
+        }}
+      />
       <Tab.Screen
         name="Deals"
         component={HotDealsPage}
-        options={defaultOptions}
+        options={{
+          ...defaultOptions,
+          headerTitle: () => <HeaderTitle title="Hottest Deals" />,
+        }}
       />
       <Tab.Screen
         name="Basket"
         component={HotDealsPage}
-        options={{...defaultOptions, tabBarBadge: 4}}
+        options={{
+          ...defaultOptions,
+          headerTitle: () => <HeaderTitle title="Basket" />,
+          tabBarBadge: 4,
+        }}
       />
     </Tab.Navigator>
   );
