@@ -7,7 +7,7 @@ const HomePage = () => {
 
   return (
     <View style={{backgroundColor: theme.colors.background}}>
-      <Text>asdass</Text>
+      <Text style={{fontFamily: 'DMSans-Bold'}}>Omen Tonrem!</Text>
     </View>
   );
 };

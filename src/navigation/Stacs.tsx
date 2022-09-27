@@ -1,21 +1,30 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {
+  BottomTabNavigationOptions,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {HomePage, HotDealsPage} from '../pages';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import CustomDrawerContent from './customDrawerContent';
+import {useTheme} from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
 const TabStack = () => {
+  const theme = useTheme();
+  const defaultOptions: BottomTabNavigationOptions = {
+    headerTitleAlign: 'left',
+  };
+
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
-        tabBarActiveTintColor: 'tomato',
-        tabBarInactiveTintColor: 'blue',
-        tabBarLabelStyle: {color: 'gray', fontSize: 12},
+        tabBarActiveTintColor: theme.colors.primary,
+        tabBarInactiveTintColor: theme.colors.primary_light,
+        tabBarLabelStyle: {color: theme.colors.gray, fontSize: 12},
         tabBarIconStyle: {fontSize: 22},
         tabBarStyle: {height: 90},
         tabBarIcon: ({focused, color}) => {
@@ -33,12 +42,16 @@ const TabStack = () => {
           return <MaterialIcons name={iconName} size={25} color={color} />;
         },
       })}>
-      <Tab.Screen name="Home" component={HomePage} />
-      <Tab.Screen name="Deals" component={HotDealsPage} />
+      <Tab.Screen name="Home" component={HomePage} options={defaultOptions} />
+      <Tab.Screen
+        name="Deals"
+        component={HotDealsPage}
+        options={defaultOptions}
+      />
       <Tab.Screen
         name="Basket"
         component={HotDealsPage}
-        options={{tabBarBadge: 3}}
+        options={{...defaultOptions, tabBarBadge: 4}}
       />
     </Tab.Navigator>
   );
@@ -50,7 +63,7 @@ const DrawerStack = () => {
       screenOptions={{drawerPosition: 'right'}}
       drawerContent={() => <CustomDrawerContent />}>
       <Drawer.Screen
-        name="Home"
+        name="Main"
         component={TabStack}
         options={{headerShown: false}}
       />
