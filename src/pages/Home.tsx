@@ -1,11 +1,13 @@
+import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {View, Text} from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 const HomePage = () => {
+  const theme = useTheme();
+
   return (
-    <View>
-      <Text>home sayfası</Text>
-      <MaterialIcons name="home" size={12} color="#ccc" />
+    <View style={{backgroundColor: theme.colors.background}}>
+      <Text>asdass</Text>
     </View>
   );
 };

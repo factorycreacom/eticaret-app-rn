@@ -1,13 +1,13 @@
-import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
+import {Provider} from 'react-redux';
 import Navigation from '../navigation';
-import {CustomDarkTheme, CustomLightTheme} from '../themes';
+import store from '../redux/store';
 
 const App = () => {
   return (
-    <NavigationContainer theme={CustomLightTheme}>
+    <Provider store={store}>
       <Navigation />
-    </NavigationContainer>
+    </Provider>
   );
 };
 

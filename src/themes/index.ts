@@ -4,15 +4,16 @@ const CustomLightTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: 'purple',
+    primary: '#1565c0',
   },
 };
 
 const CustomDarkTheme = {
   ...DarkTheme,
+  dark: true,
   colors: {
-    ...DefaultTheme.colors,
-    primary: 'red',
+    ...DarkTheme.colors,
+    primary: '#1565c0',
   },
 };
 
