@@ -22,7 +22,7 @@ const Error = ({error}: IProps) => {
 
       <CustomText
         style={{marginTop: 20}}
-        text={error.code + ' - ' + error.message}
+        text={error?.code + ' - ' + error?.message}
       />
     </View>
   );
