@@ -19,6 +19,7 @@ interface IBasketState {
 }
 interface IProductsState {
   products: IProductInterface[];
+  activeProducts: IProductInterface[];
 }
 
 interface IAppSettingsActions {

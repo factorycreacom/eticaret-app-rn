@@ -12,3 +12,7 @@ export interface IProductTiming {
   startDate: string;
   endDate: string;
 }
+
+export interface IProductDeals {
+  productId: string;
+}

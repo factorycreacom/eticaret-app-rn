@@ -9,4 +9,5 @@ export enum BASKET_ACTIONS {
 
 export enum PRODUCTS_ACTIONS {
   ADD = 'add_products',
+  ADD_ACTIVE_PRODUCTS = 'add_active_products',
 }
