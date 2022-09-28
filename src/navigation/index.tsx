@@ -1,11 +1,11 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {APP_THEME, IAppSettingsState} from '../models/generic.types';
+import {APP_THEME, ICombineReducer} from '../models/generic.types';
 import {theme} from '../themes';
 import {DrawerStack} from './Stacs';
 const Navigation = () => {
-  const themeState = useSelector((state: IAppSettingsState) => state);
+  const themeState = useSelector((state: ICombineReducer) => state.appsettings);
 
   return (
     <NavigationContainer

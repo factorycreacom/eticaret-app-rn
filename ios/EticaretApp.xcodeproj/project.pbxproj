@@ -16,8 +16,8 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		968E0CA228E33D7900CE7C3B /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 968E0CA128E33D7900CE7C3B /* Fonts */; };
 		A5AB18FE20AA4FCC869F9D34 /* DMSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE0FB18784C94D09B7F6C648 /* DMSans-Bold.ttf */; };
-		FD42AFD3BD9B4BF5A3685CD8 /* DMSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 908F5A9F1D2F4AD596F4FE74 /* DMSans-Medium.ttf */; };
 		E39DAABD739A489A968E829C /* DMSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B72DEBAA87F450C9113DCF3 /* DMSans-Regular.ttf */; };
+		FD42AFD3BD9B4BF5A3685CD8 /* DMSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 908F5A9F1D2F4AD596F4FE74 /* DMSans-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,16 +42,16 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = EticaretApp/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-EticaretApp-EticaretAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EticaretApp-EticaretAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-EticaretApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EticaretApp.debug.xcconfig"; path = "Target Support Files/Pods-EticaretApp/Pods-EticaretApp.debug.xcconfig"; sourceTree = "<group>"; };
+		4B72DEBAA87F450C9113DCF3 /* DMSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Regular.ttf"; path = "../assets/fonts/DMSans-Regular.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-EticaretApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EticaretApp.release.xcconfig"; path = "Target Support Files/Pods-EticaretApp/Pods-EticaretApp.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-EticaretApp-EticaretAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EticaretApp-EticaretAppTests.debug.xcconfig"; path = "Target Support Files/Pods-EticaretApp-EticaretAppTests/Pods-EticaretApp-EticaretAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-EticaretApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EticaretApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = EticaretApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-EticaretApp-EticaretAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EticaretApp-EticaretAppTests.release.xcconfig"; path = "Target Support Files/Pods-EticaretApp-EticaretAppTests/Pods-EticaretApp-EticaretAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		908F5A9F1D2F4AD596F4FE74 /* DMSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Medium.ttf"; path = "../assets/fonts/DMSans-Medium.ttf"; sourceTree = "<group>"; };
 		968E0CA128E33D7900CE7C3B /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
+		BE0FB18784C94D09B7F6C648 /* DMSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Bold.ttf"; path = "../assets/fonts/DMSans-Bold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		BE0FB18784C94D09B7F6C648 /* DMSans-Bold.ttf */ = {isa = PBXFileReference; name = "DMSans-Bold.ttf"; path = "../assets/fonts/DMSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		908F5A9F1D2F4AD596F4FE74 /* DMSans-Medium.ttf */ = {isa = PBXFileReference; name = "DMSans-Medium.ttf"; path = "../assets/fonts/DMSans-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		4B72DEBAA87F450C9113DCF3 /* DMSans-Regular.ttf */ = {isa = PBXFileReference; name = "DMSans-Regular.ttf"; path = "../assets/fonts/DMSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +115,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2EE813A7A97E48E699751618 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BE0FB18784C94D09B7F6C648 /* DMSans-Bold.ttf */,
+				908F5A9F1D2F4AD596F4FE74 /* DMSans-Medium.ttf */,
+				4B72DEBAA87F450C9113DCF3 /* DMSans-Regular.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,17 +168,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		2EE813A7A97E48E699751618 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				BE0FB18784C94D09B7F6C648 /* DMSans-Bold.ttf */,
-				908F5A9F1D2F4AD596F4FE74 /* DMSans-Medium.ttf */,
-				4B72DEBAA87F450C9113DCF3 /* DMSans-Regular.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 

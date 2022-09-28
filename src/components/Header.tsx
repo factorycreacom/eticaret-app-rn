@@ -60,7 +60,7 @@ const HeaderRightIcon = () => {
           name={!isDrawerOpen ? 'menu' : 'menu-open'}
           color={colors.text}
           size={theme.Typhograpyh.headerIconSize}
-          style={{marginRight: 20}}
+          style={{marginRight: 16}}
         />
       </Animatable.View>
     </TouchableOpacity>

@@ -1,4 +1,5 @@
-import {APP_SETTINGS_ACTIONS} from './actions.types';
+import {APP_SETTINGS_ACTIONS, BASKET_ACTIONS} from './actions.types';
+import {IProductInterface} from './Product.interface';
 
 enum APP_THEME {
   DARK = 'dark',
@@ -9,10 +10,36 @@ interface IAppSettingsState {
   theme: APP_THEME;
 }
 
+interface IBasketState {
+  products: IProductInterface[];
+}
+
 interface IAppSettingsActions {
   type: APP_SETTINGS_ACTIONS;
   payload: APP_THEME;
 }
 
+interface IBasketActions {
+  type: BASKET_ACTIONS;
+  payload: IProductInterface;
+}
+
+interface IAppConfig {
+  BASE_URL: string;
+  IMAGE_BASE_URL: string;
+}
+
+interface ICombineReducer {
+  appsettings: IAppSettingsState;
+  basket: IBasketState;
+}
+
 export {APP_THEME};
-export type {IAppSettingsState, IAppSettingsActions};
+export type {
+  IAppSettingsState,
+  IAppSettingsActions,
+  IAppConfig,
+  IBasketState,
+  IBasketActions,
+  ICombineReducer,
+};

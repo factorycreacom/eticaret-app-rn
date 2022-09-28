@@ -10,6 +10,8 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import CustomDrawerContent from './customDrawerContent';
 import {useTheme} from '@react-navigation/native';
 import {HeaderRightIcon, HeaderTitle} from '../components/Header';
+import {useSelector} from 'react-redux';
+import {ICombineReducer} from '../models/generic.types';
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -19,6 +21,7 @@ const TabStack = () => {
   const defaultOptions: BottomTabNavigationOptions = {
     headerTitleAlign: 'left',
   };
+  const basketState = useSelector((state: ICombineReducer) => state.basket);
 
   return (
     <Tab.Navigator
@@ -28,6 +31,7 @@ const TabStack = () => {
         tabBarLabelStyle: {color: theme.colors.gray, fontSize: 12},
         tabBarIconStyle: {fontSize: 22},
         tabBarStyle: {height: 90},
+        headerShadowVisible: false,
         tabBarIcon: ({focused, color}) => {
           let iconName;
 
@@ -66,7 +70,9 @@ const TabStack = () => {
         options={{
           ...defaultOptions,
           headerTitle: () => <HeaderTitle title="Basket" />,
-          tabBarBadge: 4,
+          tabBarBadge: basketState.products?.length
+            ? basketState.products.length
+            : undefined,
         }}
       />
     </Tab.Navigator>

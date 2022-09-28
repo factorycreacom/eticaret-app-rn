@@ -4,14 +4,12 @@ import {StyleSheet, Switch} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useDispatch, useSelector} from 'react-redux';
 import {APP_SETTINGS_ACTIONS} from '../models/actions.types';
-import {APP_THEME, IAppSettingsState} from '../models/generic.types';
+import {APP_THEME, ICombineReducer} from '../models/generic.types';
 const CustomDrawerContent = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
 
-  const themeState: IAppSettingsState = useSelector(
-    (state: IAppSettingsState) => state,
-  );
+  const themeState = useSelector((state: ICombineReducer) => state.appsettings);
 
   const toggleSwitch = () => {
     dispatch({

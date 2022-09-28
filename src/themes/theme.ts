@@ -11,6 +11,7 @@ declare module '@react-navigation/native' {
       border: string;
       notification: string;
       gray: string;
+      danger: string;
     };
     fonts: {
       regular: string;
@@ -28,6 +29,8 @@ const CustomLightTheme: ExtendedTheme = {
     primary: '#1565c0',
     primary_light: '#5e92f3',
     gray: '#616161',
+    danger: '#CA0B00',
+    background: '#ffffff',
   },
   fonts: {
     regular: 'DMSans-Regular',
@@ -44,6 +47,7 @@ const CustomDarkTheme: ExtendedTheme = {
     primary: '#1565c0',
     primary_light: '#5e92f3',
     gray: '#f5f5f5',
+    danger: '#CA0B00',
   },
   fonts: {
     regular: 'DMSans-Regular',
@@ -71,10 +75,16 @@ const Typhograpyh = {
   HeaderTextSize: 24,
   TextSize: 12,
   headerIconSize: 24,
+  ProductTextSise: 18,
 };
 
 const Style = {
   activeOpacity: 0.8,
+  pagePaddings: 16,
+  pageMarginTop: 25,
+  productBorderRadius: 10,
+  margin10: 10,
+  margin15: 15,
 };
 
 export default {CustomLightTheme, CustomDarkTheme, Fonts, Typhograpyh, Style};

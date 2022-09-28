@@ -1,6 +1,6 @@
 import {createStore} from 'redux';
-import appSettingsReducer from './reducers/Appsettings.reducers';
+import rootReducer from './reducers/root';
 
-const store = createStore(appSettingsReducer);
+const store = createStore(rootReducer);
 
 export default store;
