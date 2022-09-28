@@ -3,6 +3,10 @@ export enum APP_SETTINGS_ACTIONS {
 }
 
 export enum BASKET_ACTIONS {
-  ADD_BASKET = 'add',
-  REMOVE_BASKET = 'remove',
+  ADD_BASKET = 'add_basket',
+  REMOVE_BASKET = 'remove_basket',
+}
+
+export enum PRODUCTS_ACTIONS {
+  ADD = 'add_products',
 }

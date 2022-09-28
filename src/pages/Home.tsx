@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // eslint-disable-next-line react-hooks/exhaustive-deps
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {memo, useCallback, useEffect, useState} from 'react';
 import {FlatList} from 'react-native';
 import useAxios from 'axios-hooks';
 import Product from '../components/Product';
@@ -8,14 +8,18 @@ import {IProductInterface, IProductTiming} from '../models/Product.interface';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
 import AppConfig from '../../config';
-import {useDispatch} from 'react-redux';
-import {BASKET_ACTIONS} from '../models/actions.types';
+import {useDispatch, useSelector} from 'react-redux';
+import {BASKET_ACTIONS, PRODUCTS_ACTIONS} from '../models/actions.types';
 import Layout from '../components/Layout';
 import moment from 'moment';
 import timingData from '../themes/data.json';
 import NotFoundData from '../components/NotFoundData';
+import {ICombineReducer} from '../models/generic.types';
 const HomePage = () => {
   const dispatch = useDispatch();
+  const products = useSelector(
+    (state: ICombineReducer) => state.products.products,
+  );
   const [filteredData, setFilteredData] = useState<IProductInterface[]>([]);
   const [isContentLoad, setContentLoad] = useState<boolean>(false);
   const [{data, loading, error}] = useAxios<IProductInterface[], any, any>(
@@ -27,8 +31,17 @@ const HomePage = () => {
       `${AppConfig.BASE_URL}/productTimings`,
     );
 
-  const filterization = () => {
-    data?.filter(product => {
+  useEffect(() => {
+    if (timingData && data) {
+      dispatch({
+        type: PRODUCTS_ACTIONS.ADD,
+        payload: data,
+      });
+    }
+  }, [data, timingData]);
+
+  useEffect(() => {
+    products.filter(product => {
       const _timing = timingData?.find(timing => {
         return timing?.productId && timing.productId === product.id;
       });
@@ -50,13 +63,7 @@ const HomePage = () => {
     });
 
     setContentLoad(true);
-  };
-
-  useEffect(() => {
-    if (timingData && data) {
-      filterization();
-    }
-  }, [data, timingData]);
+  }, [products]);
 
   const keyExtractors = useCallback((item: IProductInterface) => {
     return item.id.toString();
@@ -109,4 +116,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default memo(HomePage);
