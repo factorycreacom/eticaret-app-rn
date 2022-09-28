@@ -1,10 +1,22 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Text} from 'react-native';
+import Layout from '../components/Layout';
+import MasonryList from '@react-native-seoul/masonry-list';
 const HotDealsPage = () => {
   return (
-    <View>
-      <Text>Hot Deals Sayfası</Text>
-    </View>
+    <Layout>
+      <MasonryList
+        data={filteredItems}
+        keyExtractor={(item): string => item.id}
+        numColumns={2}
+        showsVerticalScrollIndicator={false}
+        renderItem={({item}) => <CardItem />}
+        refreshing={isLoadingNext}
+        onRefresh={() => refetch({first: ITEM_CNT})}
+        onEndReachedThreshold={0.1}
+        onEndReached={() => loadNext(ITEM_CNT)}
+      />
+    </Layout>
   );
 };
 

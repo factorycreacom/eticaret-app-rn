@@ -6,3 +6,9 @@ export interface IProductInterface {
   price: string;
   category: string;
 }
+
+export interface IProductTiming {
+  productId: string;
+  startDate: string;
+  endDate: string;
+}

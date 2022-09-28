@@ -62,6 +62,7 @@ const TabStack = () => {
         options={{
           ...defaultOptions,
           headerTitle: () => <HeaderTitle title="Hottest Deals" />,
+          headerRight: () => <HeaderRightIcon />,
         }}
       />
       <Tab.Screen
