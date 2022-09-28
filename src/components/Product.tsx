@@ -9,13 +9,14 @@ import CustomText from './CustomText';
 interface IProduct {
   product: IProductInterface;
   onPress: (product: IProductInterface) => void;
+  height?: number;
 }
 
-const Product = ({product, onPress}: IProduct) => {
+const Product = ({product, height = 200, onPress}: IProduct) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        style={styles.imageContainer}
+        style={[styles.imageContainer, {height}]}
         onPress={() => onPress(product)}>
         <Image
           resizeMode="cover"
@@ -51,7 +52,6 @@ const styles = StyleSheet.create({
     paddingVertical: theme.Style.margin15,
   },
   imageContainer: {
-    height: 200,
     paddingHorizontal: theme.Style.margin15,
     borderRadius: theme.Style.productBorderRadius,
     shadowColor: '#000',

@@ -41,6 +41,7 @@ interface IAppConfig {
   BASE_URL: string;
   IMAGE_BASE_URL: string;
   DATE_FORMAT: 'YYYY-MM-DD HH:mm:ss' | 'DD-MM-YY HH:mm:ss';
+  MASONRY_HEIGHTS: number[];
 }
 
 interface ICombineReducer {
