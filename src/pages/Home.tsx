@@ -17,6 +17,7 @@ import NotFoundData from '../components/NotFoundData';
 const HomePage = () => {
   const dispatch = useDispatch();
   const [filteredData, setFilteredData] = useState<IProductInterface[]>([]);
+  const [isContentLoad, setContentLoad] = useState<boolean>(false);
   const [{data, loading, error}] = useAxios<IProductInterface[], any, any>(
     `${AppConfig.BASE_URL}/products`,
   );
@@ -44,9 +45,11 @@ const HomePage = () => {
         timeStampEndDate,
       );
       if (_timing && compare) {
-        setFilteredData([...filteredData, product]);
+        setFilteredData(_filteredData => [..._filteredData, product]);
       }
     });
+
+    setContentLoad(true);
   };
 
   useEffect(() => {
@@ -70,28 +73,38 @@ const HomePage = () => {
     });
   };
 
+  const RenderContent = () => {
+    if (loading || timingLoading) {
+      return <Loading />;
+    } else if (error || timingError) {
+      return <Error error={error ? error : timingError} />;
+    } else if (filteredData.length && isContentLoad) {
+      return (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          keyExtractor={keyExtractors}
+          data={filteredData}
+          removeClippedSubviews={true}
+          maxToRenderPerBatch={7}
+          initialNumToRender={10}
+          renderItem={renderItem}
+        />
+      );
+    } else if (!filteredData.length && isContentLoad) {
+      return (
+        <NotFoundData
+          message="Filtreye uygun ürün bulunamadı!"
+          icon="error-outline"
+        />
+      );
+    } else {
+      return null;
+    }
+  };
+
   return (
     <Layout>
-      <>
-        {loading || (timingLoading && <Loading />)}
-        {error || (timingError && <Error error={error || timingError} />)}
-        {filteredData.length > 0 ? (
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            keyExtractor={keyExtractors}
-            data={filteredData}
-            removeClippedSubviews={true}
-            maxToRenderPerBatch={7}
-            initialNumToRender={10}
-            renderItem={renderItem}
-          />
-        ) : (
-          <NotFoundData
-            message="Filtreye uygun ürün bulunamadı!"
-            icon="error-outline"
-          />
-        )}
-      </>
+      <RenderContent />
     </Layout>
   );
 };

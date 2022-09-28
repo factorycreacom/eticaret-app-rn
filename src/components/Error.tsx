@@ -5,7 +5,7 @@ import {View, StyleSheet} from 'react-native';
 import CustomText from './CustomText';
 
 interface IProps {
-  error: AxiosError<any, any>;
+  error: AxiosError<any, any> | null;
 }
 
 const Error = ({error}: IProps) => {
