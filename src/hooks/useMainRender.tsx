@@ -7,7 +7,7 @@ import NotFoundData from '../components/NotFoundData';
 interface IProps {
   error: AxiosError<any, any> | null | any;
   loading: boolean | any;
-  data: any[] | undefined;
+  data: any[] | undefined | 'basket-empty';
 }
 
 const useMainRender = ({error, loading, data}: IProps) => {
@@ -26,10 +26,19 @@ const useMainRender = ({error, loading, data}: IProps) => {
         />
       );
     } else {
-      return <View></View>;
+      return <View />;
     }
   } else {
-    return <View></View>;
+    if (data === 'basket-empty') {
+      return (
+        <NotFoundData
+          message="Sepetinizde ürün bulunamadı, Alışverişin tadını çıkartın!"
+          icon="error-outline"
+        />
+      );
+    } else {
+      return <View />;
+    }
   }
 };
 

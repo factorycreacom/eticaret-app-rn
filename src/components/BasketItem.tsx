@@ -7,6 +7,7 @@ import CustomText from './CustomText';
 import InputSpinner from 'react-native-input-spinner';
 import {useDispatch} from 'react-redux';
 import {BASKET_ACTIONS} from '../models/actions.types';
+import Toast from 'react-native-toast-message';
 
 interface IProps {
   product: IProductInterface;
@@ -25,6 +26,22 @@ const BasketItem = ({product}: IProps) => {
       payload: product,
     });
   };
+
+  const showToast = (type: 'min' | 'max') => {
+    Toast.show({
+      bottomOffset: 100,
+      position: 'bottom',
+      type: type === 'max' ? 'error' : 'success',
+      text1:
+        type === 'max' ? 'Maximum Adete ulaşıldı!' : 'Ürün Sepetten Çıkarıldı!',
+      text2:
+        type === 'max'
+          ? 'Aynı üründen tek seferde en fazla 10 adet alabilirsiniz!'
+          : `${product.name} isimli ürün sepetinizden çıkarıldı`,
+      onPress: () => Toast.hide(),
+    });
+  };
+
   return (
     <View style={[styles.card, {backgroundColor: colors.colors.card}]}>
       <View style={styles.productDetails}>
@@ -46,7 +63,7 @@ const BasketItem = ({product}: IProps) => {
       <View style={styles.spinnerContainer}>
         <InputSpinner
           height={25}
-          max={25}
+          max={10}
           min={0}
           step={1}
           colorMax={colors.colors.danger}
@@ -55,6 +72,8 @@ const BasketItem = ({product}: IProps) => {
           buttonFontSize={16}
           buttonTextColor={colors.colors.card}
           value={product.quantity}
+          onMax={() => showToast('max')}
+          onMin={() => showToast('min')}
           onDecrease={() => changeQuantity('decrement')}
           onIncrease={() => changeQuantity('increment')}
         />
@@ -69,6 +88,7 @@ const styles = StyleSheet.create({
   card: {
     display: 'flex',
     padding: theme.Style.pagePaddings,
+    marginHorizontal: theme.Style.pagePaddings,
     borderRadius: theme.Style.productBorderRadius,
     flexDirection: 'row',
     justifyContent: 'space-between',

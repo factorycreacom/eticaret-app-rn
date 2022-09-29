@@ -6,16 +6,24 @@ const initialState: IBasketState = {
 };
 
 const basketReducer = (state = initialState, action: IBasketActions) => {
+  const incrementFunc = () => {
+    state.products.find(item => {
+      if (item.id === action.payload.id) {
+        item.quantity = item.quantity ? item.quantity + 1 : 1;
+      }
+    });
+  };
   switch (action.type) {
     case BASKET_ACTIONS.ADD_BASKET:
+      const _find = state.products.find(i => i.id === action.payload.id);
+      if (_find) {
+        incrementFunc();
+        return {products: state.products};
+      }
       return {products: [...state.products, action.payload]};
 
     case BASKET_ACTIONS.INCREMENT:
-      state.products.find(item => {
-        if (item.id === action.payload.id) {
-          item.quantity = item.quantity ? item.quantity + 1 : 1;
-        }
-      });
+      incrementFunc();
       return {products: state.products};
 
     case BASKET_ACTIONS.DECREMENT:
