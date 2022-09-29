@@ -76,6 +76,7 @@ const Typhograpyh = {
   TextSize: 12,
   headerIconSize: 24,
   ProductTextSise: 18,
+  DealProductTextSize: 14,
 };
 
 const Style = {

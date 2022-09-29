@@ -1,23 +1,36 @@
+import {useTheme} from '@react-navigation/native';
 import React, {memo} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Image} from 'react-native-animatable';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useDispatch} from 'react-redux';
+import {BASKET_ACTIONS} from '../models/actions.types';
 import {IProductInterface} from '../models/Product.interface';
 import {theme} from '../themes';
 import CustomText from './CustomText';
 
 interface IProduct {
   product: IProductInterface;
-  onPress: (product: IProductInterface) => void;
   height?: number;
+  isDeals?: boolean;
 }
 
-const Product = ({product, height = 200, onPress}: IProduct) => {
+const Product = ({product, height = 200, isDeals = false}: IProduct) => {
+  const colors = useTheme();
+  const dispatch = useDispatch();
+
+  const addBasket = () => {
+    dispatch({
+      type: BASKET_ACTIONS.ADD_BASKET,
+      payload: product,
+    });
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={[styles.imageContainer, {height}]}
-        onPress={() => onPress(product)}>
+        onPress={addBasket}>
         <Image
           resizeMode="cover"
           style={styles.image}
@@ -25,20 +38,40 @@ const Product = ({product, height = 200, onPress}: IProduct) => {
         />
       </TouchableOpacity>
 
-      <View style={styles.textContainer}>
+      <View
+        style={[
+          styles.textContainer,
+          isDeals ? styles.textContainerDeals : styles.textContainerProduct,
+        ]}>
         <View style={styles.nameContainer}>
           <CustomText
             font="regular"
             text={product.name}
-            size={theme.Typhograpyh.ProductTextSise}
+            size={
+              isDeals
+                ? theme.Typhograpyh.DealProductTextSize
+                : theme.Typhograpyh.ProductTextSise
+            }
           />
         </View>
 
-        <CustomText
-          font="bold"
-          size={theme.Typhograpyh.ProductTextSise}
-          text={product.price}
-        />
+        <View style={styles.pricing}>
+          <CustomText
+            font="bold"
+            size={theme.Typhograpyh.ProductTextSise}
+            text={product.price}
+            color={isDeals ? colors.colors.primary : colors.colors.text}
+          />
+          {isDeals && (
+            <CustomText
+              style={{marginLeft: theme.Style.margin10 - 5}}
+              font="regular"
+              size={theme.Typhograpyh.TextSize}
+              text="50% OFF" // Apiden dönen veride burası ile ilgili bir veri bulamadım!
+              color={colors.colors.gray}
+            />
+          )}
+        </View>
       </View>
     </View>
   );
@@ -71,14 +104,27 @@ const styles = StyleSheet.create({
   textContainer: {
     marginTop: 15,
     display: 'flex',
+    paddingHorizontal: 25,
+  },
+
+  textContainerProduct: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 25,
     alignItems: 'center',
+  },
+
+  textContainerDeals: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
   },
   nameContainer: {
     display: 'flex',
     flex: 1,
     marginRight: 20,
+  },
+  pricing: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });

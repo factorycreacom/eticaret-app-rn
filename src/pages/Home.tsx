@@ -5,17 +5,18 @@ import {FlatList} from 'react-native';
 import useAxios from 'axios-hooks';
 import Product from '../components/Product';
 import {IProductInterface, IProductTiming} from '../models/Product.interface';
-import Loading from '../components/Loading';
-import Error from '../components/Error';
 import AppConfig from '../../config';
 import {useDispatch, useSelector} from 'react-redux';
-import {BASKET_ACTIONS, PRODUCTS_ACTIONS} from '../models/actions.types';
+import {PRODUCTS_ACTIONS} from '../models/actions.types';
 import Layout from '../components/Layout';
-import moment from 'moment';
 import timingData from '../themes/data.json';
-import NotFoundData from '../components/NotFoundData';
 import {ICombineReducer} from '../models/generic.types';
+import useMainRender from '../hooks/useMainRender';
+import useProductFilterTiming from '../hooks/useProducFilterTiming';
+import NotFoundData from '../components/NotFoundData';
+import useKeyExtractor from '../hooks/useKeyExtractor';
 const HomePage = () => {
+  const [showNotfound, setShowNotfund] = useState<boolean>(false);
   const dispatch = useDispatch();
   const products = useSelector(
     (state: ICombineReducer) => state.products.products,
@@ -23,69 +24,48 @@ const HomePage = () => {
   const activeProducts = useSelector(
     (state: ICombineReducer) => state.products.activeProducts,
   );
-  const [isContentLoad, setContentLoad] = useState<boolean>(false);
 
   const [{data: timingData2, loading: timingLoading, error: timingError}] =
     useAxios<IProductTiming[], any, any>(
       `${AppConfig.BASE_URL}/productTimings`,
     );
 
+  const mainrender = useMainRender({
+    error: timingError,
+    loading: timingLoading,
+    data: activeProducts,
+  });
+
+  const filterization = useProductFilterTiming({
+    products,
+    timings: timingData,
+  });
+
   useEffect(() => {
-    if (Array.isArray(products)) {
-      const filteredData: IProductInterface[] = [];
-      products.filter(product => {
-        const _timing = timingData?.find(timing => {
-          return timing?.productId && timing.productId === product.id;
-        });
-        const utc = moment.utc();
-        const currentTime = moment(utc).local().format(AppConfig.DATE_FORMAT);
-        const timeStampStartDate = moment(_timing?.startDate).format(
-          AppConfig.DATE_FORMAT,
-        );
-        const timeStampEndDate = moment(_timing?.endDate).format(
-          AppConfig.DATE_FORMAT,
-        );
-        const compare = moment(currentTime).isBetween(
-          timeStampStartDate,
-          timeStampEndDate,
-        );
-        if (_timing && compare) {
-          filteredData.push(product);
-        }
-      });
+    if (filterization) {
+      setShowNotfund(false);
       dispatch({
         type: PRODUCTS_ACTIONS.ADD_ACTIVE_PRODUCTS,
-        payload: filteredData,
+        payload: filterization,
       });
-      setContentLoad(true);
+    } else {
+      setShowNotfund(true);
     }
-  }, [products]);
-
-  const keyExtractors = useCallback((item: IProductInterface) => {
-    return item.id.toString();
-  }, []);
+  }, [filterization]);
 
   const renderItem = useCallback((props: {item: IProductInterface}) => {
-    return <Product product={props.item} onPress={handleProductClick} />;
+    return <Product product={props.item} />;
   }, []);
 
-  const handleProductClick = (product: IProductInterface) => {
-    dispatch({
-      type: BASKET_ACTIONS.ADD_BASKET,
-      payload: product,
-    });
-  };
+  const keyExtractors = useCallback((product: IProductInterface) => {
+    return product.id.toString();
+  }, []);
 
-  const RenderContent = () => {
-    if (timingLoading) {
-      return <Loading />;
-    } else if (timingError) {
-      return <Error error={timingError} />;
-    } else if (
-      Array.isArray(activeProducts) &&
-      activeProducts.length &&
-      isContentLoad
-    ) {
+  const RenderContent = useCallback(() => {
+    if (showNotfound) {
+      return <NotFoundData message="Bu tarihte uygun veri bulunamadı" />;
+    }
+    if (mainrender === true) {
       return (
         <FlatList
           showsVerticalScrollIndicator={false}
@@ -97,21 +77,10 @@ const HomePage = () => {
           renderItem={renderItem}
         />
       );
-    } else if (
-      Array.isArray(activeProducts) &&
-      !activeProducts.length &&
-      isContentLoad
-    ) {
-      return (
-        <NotFoundData
-          message="Filtreye uygun ürün bulunamadı!"
-          icon="error-outline"
-        />
-      );
     } else {
-      return null;
+      return mainrender;
     }
-  };
+  }, [activeProducts, showNotfound, mainrender]);
 
   return (
     <Layout>
