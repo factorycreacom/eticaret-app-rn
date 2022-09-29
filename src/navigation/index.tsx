@@ -8,7 +8,7 @@ import {PRODUCTS_ACTIONS} from '../models/actions.types';
 import {APP_THEME, ICombineReducer} from '../models/generic.types';
 import {IProductInterface} from '../models/Product.interface';
 import {theme} from '../themes';
-import {DrawerStack} from './Stacs';
+import {DrawerStack} from './Stacks';
 import useMainRender from '../hooks/useMainRender';
 
 const Navigation = () => {

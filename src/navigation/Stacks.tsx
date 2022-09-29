@@ -27,7 +27,7 @@ const TabStack = () => {
     <Tab.Navigator
       screenOptions={({route}) => ({
         tabBarActiveTintColor: theme.colors.primary,
-        tabBarInactiveTintColor: theme.colors.primary_light,
+        tabBarInactiveTintColor: theme.colors.gray,
         tabBarLabelStyle: {color: theme.colors.gray, fontSize: 12},
         tabBarIconStyle: {fontSize: 22},
         tabBarStyle: {height: 90},

@@ -1,37 +1,45 @@
-import {useTheme} from '@react-navigation/native';
-import React from 'react';
-import {StyleSheet, Switch} from 'react-native';
+import React, {useRef} from 'react';
+import {StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useDispatch, useSelector} from 'react-redux';
 import {APP_SETTINGS_ACTIONS} from '../models/actions.types';
 import {APP_THEME, ICombineReducer} from '../models/generic.types';
+import Lottie from 'lottie-react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 const CustomDrawerContent = () => {
   const dispatch = useDispatch();
-  const theme = useTheme();
+  const animationRef = useRef<Lottie>(null);
 
   const themeState = useSelector((state: ICombineReducer) => state.appsettings);
 
   const toggleSwitch = () => {
-    dispatch({
-      type: APP_SETTINGS_ACTIONS.SWITCH_THEME,
-      payload:
-        themeState.theme === APP_THEME.LIGHT ? APP_THEME.DARK : APP_THEME.LIGHT,
-    });
+    if (themeState.theme === APP_THEME.LIGHT) {
+      animationRef.current?.play(30, 280);
+    } else {
+      animationRef.current?.play(300, 481);
+    }
+
+    setTimeout(() => {
+      dispatch({
+        type: APP_SETTINGS_ACTIONS.SWITCH_THEME,
+        payload:
+          themeState.theme === APP_THEME.LIGHT
+            ? APP_THEME.DARK
+            : APP_THEME.LIGHT,
+      });
+    }, 600);
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <Switch
-        trackColor={{false: theme.colors.border, true: theme.colors.border}}
-        thumbColor={
-          themeState.theme === APP_THEME.LIGHT
-            ? theme.colors.border
-            : theme.colors.primary
-        }
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={toggleSwitch}
-        value={themeState.theme === APP_THEME.DARK ? true : false}
-      />
+      <TouchableOpacity activeOpacity={1} onPress={() => toggleSwitch()}>
+        <Lottie
+          loop={false}
+          ref={animationRef}
+          style={{height: 60}}
+          source={require('./../../assets/dark-mode.json')}
+        />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
