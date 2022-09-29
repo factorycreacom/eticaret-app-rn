@@ -50,6 +50,10 @@ interface ICombineReducer {
   products: IProductsState;
 }
 
+type Nav = {
+  navigate: (value: string) => void;
+};
+
 export {APP_THEME};
 export type {
   IAppSettingsState,
@@ -60,4 +64,5 @@ export type {
   IProductActions,
   ICombineReducer,
   IProductsState,
+  Nav,
 };

@@ -5,10 +5,11 @@ import {IProductDeals, IProductInterface} from '../models/Product.interface';
 import AppConfig from '../../config';
 import useAxios from 'axios-hooks';
 import {useSelector} from 'react-redux';
-import {ICombineReducer} from '../models/generic.types';
+import {ICombineReducer, Nav} from '../models/generic.types';
 import Product from '../components/Product';
 import useMainRender from '../hooks/useMainRender';
 import useHotDealsFilter from '../hooks/useHotDealsFilter';
+import {useNavigation} from '@react-navigation/native';
 const HotDealsPage = () => {
   const [selectedProducts, setSelectedProducts] = useState<IProductInterface[]>(
     [],
@@ -22,6 +23,7 @@ const HotDealsPage = () => {
 
   const mainRender = useMainRender({error, loading, data: products});
   const filterization = useHotDealsFilter({products, timings: data});
+  const navigation = useNavigation<Nav>();
 
   useEffect(() => {
     if (Array.isArray(filterization)) {
@@ -35,7 +37,14 @@ const HotDealsPage = () => {
     ).slice(0, 1);
     const img = props.item.image.replace('240', random[0].toString());
     const params = {...props.item, image: img};
-    return <Product isDeals={true} height={random[0]} product={params} />;
+    return (
+      <Product
+        isDeals={true}
+        height={random[0]}
+        product={params}
+        toastClick={() => navigation.navigate('Basket')}
+      />
+    );
   }, []);
 
   const keyExtractors = useCallback((product: IProductInterface) => {

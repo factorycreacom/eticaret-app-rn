@@ -10,13 +10,15 @@ import {useDispatch, useSelector} from 'react-redux';
 import {PRODUCTS_ACTIONS} from '../models/actions.types';
 import Layout from '../components/Layout';
 import timingData from '../themes/data.json';
-import {ICombineReducer} from '../models/generic.types';
+import {ICombineReducer, Nav} from '../models/generic.types';
 import useMainRender from '../hooks/useMainRender';
 import useProductFilterTiming from '../hooks/useProducFilterTiming';
 import NotFoundData from '../components/NotFoundData';
+import {useNavigation} from '@react-navigation/native';
 const HomePage = () => {
   const [showNotfound, setShowNotfund] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const navigation = useNavigation<Nav>();
   const products = useSelector(
     (state: ICombineReducer) => state.products.products,
   );
@@ -53,7 +55,12 @@ const HomePage = () => {
   }, [filterization]);
 
   const renderItem = useCallback((props: {item: IProductInterface}) => {
-    return <Product product={props.item} />;
+    return (
+      <Product
+        product={props.item}
+        toastClick={() => navigation.navigate('Basket')}
+      />
+    );
   }, []);
 
   const keyExtractors = useCallback((product: IProductInterface) => {

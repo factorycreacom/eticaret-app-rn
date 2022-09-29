@@ -8,14 +8,20 @@ import {BASKET_ACTIONS} from '../models/actions.types';
 import {IProductInterface} from '../models/Product.interface';
 import {theme} from '../themes';
 import CustomText from './CustomText';
-
+import Toast from 'react-native-toast-message';
 interface IProduct {
   product: IProductInterface;
   height?: number;
   isDeals?: boolean;
+  toastClick?: () => void;
 }
 
-const Product = ({product, height = 200, isDeals = false}: IProduct) => {
+const Product = ({
+  product,
+  height = 200,
+  isDeals = false,
+  toastClick,
+}: IProduct) => {
   const colors = useTheme();
   const dispatch = useDispatch();
 
@@ -23,6 +29,18 @@ const Product = ({product, height = 200, isDeals = false}: IProduct) => {
     dispatch({
       type: BASKET_ACTIONS.ADD_BASKET,
       payload: product,
+    });
+    showToast();
+  };
+
+  const showToast = () => {
+    Toast.show({
+      bottomOffset: 100,
+      position: 'bottom',
+      type: 'success',
+      text1: 'Sepete Eklendi!',
+      text2: `${product.name} ürünü sepetinizde!`,
+      onPress: () => toastClick && toastClick(),
     });
   };
 
