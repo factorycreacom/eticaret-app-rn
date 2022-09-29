@@ -64,6 +64,7 @@ const Product = ({
         <View style={styles.nameContainer}>
           <CustomText
             font="regular"
+            numberOfLines={2}
             text={product.name}
             size={
               isDeals

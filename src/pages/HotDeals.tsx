@@ -45,6 +45,7 @@ const HotDealsPage = () => {
         toastClick={() => navigation.navigate('Basket')}
       />
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const keyExtractors = useCallback((product: IProductInterface) => {
