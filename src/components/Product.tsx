@@ -41,7 +41,10 @@ const Product = ({
       type: 'success',
       text1: 'Sepete Eklendi!',
       text2: `${product.name} ürünü sepetinizde!`,
-      onPress: () => toastClick && toastClick(),
+      onPress: () => {
+        toastClick && toastClick();
+        Toast.hide();
+      },
     });
   };
 
