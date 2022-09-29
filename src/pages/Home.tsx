@@ -14,7 +14,6 @@ import {ICombineReducer} from '../models/generic.types';
 import useMainRender from '../hooks/useMainRender';
 import useProductFilterTiming from '../hooks/useProducFilterTiming';
 import NotFoundData from '../components/NotFoundData';
-import useKeyExtractor from '../hooks/useKeyExtractor';
 const HomePage = () => {
   const [showNotfound, setShowNotfund] = useState<boolean>(false);
   const dispatch = useDispatch();

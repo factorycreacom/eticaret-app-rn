@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {memo, useCallback, useEffect, useState} from 'react';
 import Layout from '../components/Layout';
 import MasonryList from '@react-native-seoul/masonry-list';
 import {IProductDeals, IProductInterface} from '../models/Product.interface';
@@ -59,4 +59,4 @@ const HotDealsPage = () => {
   );
 };
 
-export default HotDealsPage;
+export default memo(HotDealsPage);
