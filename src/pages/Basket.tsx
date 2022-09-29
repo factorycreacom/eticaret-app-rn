@@ -1,11 +1,12 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, {memo} from 'react';
+import CustomText from '../components/CustomText';
+import Layout from '../components/Layout';
 const BasketPage = () => {
   return (
-    <View>
-      <Text>title</Text>
-    </View>
+    <Layout>
+      <CustomText>title</CustomText>
+    </Layout>
   );
 };
 
-export default BasketPage;
+export default memo(BasketPage);

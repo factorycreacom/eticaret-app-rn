@@ -3,7 +3,7 @@ import {
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import {HomePage, HotDealsPage} from '../pages';
+import {BasketPage, HomePage, HotDealsPage} from '../pages';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -67,10 +67,11 @@ const TabStack = () => {
       />
       <Tab.Screen
         name="Basket"
-        component={HotDealsPage}
+        component={BasketPage}
         options={{
           ...defaultOptions,
           headerTitle: () => <HeaderTitle title="Basket" />,
+          headerRight: () => <HeaderRightIcon />,
           tabBarBadge: basketState.products?.length
             ? basketState.products.length
             : undefined,
