@@ -5,6 +5,7 @@ export interface IProductInterface {
   image: string;
   price: string;
   category: string;
+  quantity?: number;
 }
 
 export interface IProductTiming {

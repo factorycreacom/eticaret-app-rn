@@ -5,6 +5,8 @@ export enum APP_SETTINGS_ACTIONS {
 export enum BASKET_ACTIONS {
   ADD_BASKET = 'add_basket',
   REMOVE_BASKET = 'remove_basket',
+  DECREMENT = 'decrement_basket',
+  INCREMENT = 'increment_basket',
 }
 
 export enum PRODUCTS_ACTIONS {

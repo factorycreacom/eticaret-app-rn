@@ -26,9 +26,10 @@ const Product = ({
   const dispatch = useDispatch();
 
   const addBasket = () => {
+    const newValue: IProductInterface = {...product, quantity: 1};
     dispatch({
       type: BASKET_ACTIONS.ADD_BASKET,
-      payload: product,
+      payload: newValue,
     });
     showToast();
   };

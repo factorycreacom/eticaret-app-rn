@@ -6029,6 +6029,13 @@ react-native-gradle-plugin@^0.70.3:
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.70.3.tgz#cbcf0619cbfbddaa9128701aa2d7b4145f9c4fc8"
   integrity sha512-oOanj84fJEXUg9FoEAQomA8ISG+DVIrTZ3qF7m69VQUJyOGYyDZmPqKcjvRku4KXlEH6hWO9i4ACLzNBh8gC0A==
 
+react-native-input-spinner@^1.7.12:
+  version "1.7.12"
+  resolved "https://registry.yarnpkg.com/react-native-input-spinner/-/react-native-input-spinner-1.7.12.tgz#a6640a0c591a209d508816f04bb71e30db514a54"
+  integrity sha512-U6Cprz8TocsBjbk2fXeaQs5wuHnJCrbIlVbSgL/5FF9X5Mpzp/xcTyqF4I/fUL0z5uZrVceAmEJ2pWBcAJPtew==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-native-reanimated@^2.10.0:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.10.0.tgz#ed53be66bbb553b5b5e93e93ef4217c87b8c73db"

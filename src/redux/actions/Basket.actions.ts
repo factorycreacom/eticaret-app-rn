@@ -9,3 +9,8 @@ export const removeBasket = () => ({
   type: BASKET_ACTIONS.REMOVE_BASKET,
   payload: 0,
 });
+
+export const Increment = () => ({
+  type: BASKET_ACTIONS.INCREMENT,
+  payload: 1,
+});
