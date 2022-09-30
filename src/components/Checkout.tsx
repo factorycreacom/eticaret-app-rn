@@ -1,11 +1,21 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
+import CustomText from './CustomText';
+import Layout from './Layout';
 const Checkout = () => {
   return (
-    <View>
-      <Text>title</Text>
-    </View>
+    <Layout style={style.container}>
+      <CustomText text="Checkout Page coming soon..." />
+    </Layout>
   );
 };
 
 export default Checkout;
+
+const style = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: Dimensions.get('screen').height - 250,
+  },
+});

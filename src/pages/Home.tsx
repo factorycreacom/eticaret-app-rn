@@ -9,7 +9,7 @@ import AppConfig from '../../config';
 import {useDispatch, useSelector} from 'react-redux';
 import {PRODUCTS_ACTIONS} from '../models/actions.types';
 import Layout from '../components/Layout';
-import timingData from '../themes/data.json';
+import timingData from '../themes/data.json'; // Static Dummy timing data
 import {ICombineReducer, Nav} from '../models/generic.types';
 import useMainRender from '../hooks/useMainRender';
 import useProductFilterTiming from '../hooks/useProducFilterTiming';
@@ -39,7 +39,7 @@ const HomePage = () => {
 
   const filterization = useProductFilterTiming({
     products,
-    timings: timingData,
+    timings: timingData2,
   });
 
   useEffect(() => {

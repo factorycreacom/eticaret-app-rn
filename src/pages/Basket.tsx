@@ -1,7 +1,6 @@
 import React, {memo, useCallback, useRef} from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {Modalize} from 'react-native-modalize';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useSelector} from 'react-redux';
 import BasketButton from '../components/BasketButton';
 import BasketItem from '../components/BasketItem';
@@ -15,7 +14,6 @@ import {theme} from '../themes';
 const BasketPage = () => {
   const basketState = useSelector((state: ICombineReducer) => state.basket);
   const modalizeRef = useRef<Modalize>(null);
-  const insets = useSafeAreaInsets();
 
   const mainrender = useMainRender({
     error: false,
@@ -70,10 +68,7 @@ const BasketPage = () => {
   return (
     <Layout style={styles.container}>
       <RenderContent />
-      <Modalize
-        ref={modalizeRef}
-        adjustToContentHeight={false}
-        modalTopOffset={insets.top + 130}>
+      <Modalize ref={modalizeRef} adjustToContentHeight={true}>
         <Checkout />
       </Modalize>
     </Layout>
