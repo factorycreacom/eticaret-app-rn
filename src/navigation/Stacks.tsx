@@ -3,7 +3,7 @@ import {
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import {BasketPage, HomePage, HotDealsPage} from '../pages';
+import {BasketPage, HomePage, HotDealsPage, ProfilePage} from '../pages';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -46,6 +46,8 @@ const TabStack = () => {
             iconName = focused ? 'loyalty' : 'local-offer';
           } else if (route.name === 'Basket') {
             iconName = focused ? 'shopping-basket' : 'shopping-basket';
+          } else if (route.name === 'Profile') {
+            iconName = focused ? 'person' : 'person-outline';
           } else {
             return 'home';
           }
@@ -80,6 +82,15 @@ const TabStack = () => {
           tabBarBadge: basketState.products?.length
             ? basketState.products.length
             : undefined,
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfilePage}
+        options={{
+          ...defaultOptions,
+          headerTitle: () => <HeaderTitle title="Profile" />,
+          headerRight: () => <HeaderRightIcon />,
         }}
       />
     </Tab.Navigator>

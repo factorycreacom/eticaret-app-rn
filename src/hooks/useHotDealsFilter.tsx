@@ -10,7 +10,7 @@ const useHotDealsFilter = ({products, timings}: IProps) => {
   const [completed, setCompleted] = useState<boolean>(false);
 
   useEffect(() => {
-    products.filter(product => {
+    products?.filter(product => {
       const prod = timings?.find(item => {
         return item.productId === product.id ? true : false;
       });

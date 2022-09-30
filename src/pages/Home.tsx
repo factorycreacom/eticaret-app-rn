@@ -69,7 +69,9 @@ const HomePage = () => {
 
   const RenderContent = useCallback(() => {
     if (showNotfound) {
-      return <NotFoundData message="Bu tarihte uygun veri bulunamadı" />;
+      return (
+        <NotFoundData message="Bu tarihte uygun veri bulunamadı. Lütfen API'yi kontrol edin" />
+      );
     }
     if (mainrender === true) {
       return (
