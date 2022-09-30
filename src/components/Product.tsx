@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     paddingVertical: theme.Style.margin15,
   },
   imageContainer: {
-    paddingHorizontal: theme.Style.margin15,
+    marginHorizontal: theme.Style.margin15,
     borderRadius: theme.Style.productBorderRadius,
     shadowColor: '#000',
     shadowOffset: {

@@ -12,12 +12,14 @@ import {useTheme} from '@react-navigation/native';
 import {HeaderRightIcon, HeaderTitle} from '../components/Header';
 import {useSelector} from 'react-redux';
 import {ICombineReducer} from '../models/generic.types';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
 const TabStack = () => {
   const theme = useTheme();
+  const insets = useSafeAreaInsets();
   const defaultOptions: BottomTabNavigationOptions = {
     headerTitleAlign: 'left',
   };
@@ -30,7 +32,10 @@ const TabStack = () => {
         tabBarInactiveTintColor: theme.colors.gray,
         tabBarLabelStyle: {color: theme.colors.gray, fontSize: 12},
         tabBarIconStyle: {fontSize: 22},
-        tabBarStyle: {height: 90},
+        tabBarStyle: {
+          height: 60 + insets.bottom,
+          paddingBottom: 5 + insets.bottom,
+        },
         headerShadowVisible: false,
         tabBarIcon: ({focused, color}) => {
           let iconName;

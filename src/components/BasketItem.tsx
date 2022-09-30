@@ -1,6 +1,6 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Platform} from 'react-native';
 import {IProductInterface} from '../models/Product.interface';
 import {theme} from '../themes';
 import CustomText from './CustomText';
@@ -62,7 +62,7 @@ const BasketItem = ({product}: IProps) => {
 
       <View style={styles.spinnerContainer}>
         <InputSpinner
-          height={25}
+          height={Platform.OS === 'ios' ? 25 : 35}
           max={10}
           min={0}
           step={1}
@@ -70,12 +70,12 @@ const BasketItem = ({product}: IProps) => {
           colorMin={colors.colors.gray}
           colorAsBackground={true}
           buttonFontSize={16}
-          buttonTextColor={colors.colors.card}
           value={product.quantity}
           onMax={() => showToast('max')}
           onMin={() => showToast('min')}
           onDecrease={() => changeQuantity('decrement')}
           onIncrease={() => changeQuantity('increment')}
+          inputStyle={{padding: 0}}
         />
       </View>
     </View>
@@ -110,8 +110,7 @@ const styles = StyleSheet.create({
     marginRight: theme.Style.margin10,
   },
   spinnerContainer: {
-    height: 30,
-    flex: 1,
-    alignItems: 'flex-end',
+    //height: 35,
+    flex: 1.1,
   },
 });
